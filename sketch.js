@@ -140,9 +140,11 @@ function resultClicked() {
 
 function pieChart(diameter, data) {
   let lastAngle = 0;
+    let color = ["#CE375C", "#64C3EB", "#E3B34c"]
   for (let i = 0; i < data.length; i++) {
-    let gray = map(i, 0, data.length, 0, 255);
-    fill(gray);
+    let col = color[i]
+    push()
+    fill(col);
     arc(
       width / 2,
       height / 2,
@@ -152,6 +154,7 @@ function pieChart(diameter, data) {
       lastAngle + radians(data[i])
     );
     lastAngle += radians(data[i]);
+      pop()
   }
 }
 
