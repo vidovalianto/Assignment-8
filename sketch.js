@@ -34,13 +34,13 @@ function draw() {
     
     textAlign(CENTER)
   push()
-  textFont('Helvetica', height/12)
+  textFont('Helvetica', width/12)
   text("Jokelytics",width/2,height/8)
   pop()
     
     if (result) {
         push()
-  textFont('Helvetica', height/40)
+  textFont('Helvetica', min(width,height)/50)
   text(result,width/2,height/5)
         const link = dadCount > generalCount ? "https://icanhazdadjoke.com/" : "https://official-joke-api.appspot.com/random_joke"
   text("For more " + link,width/2,height*4/5)
@@ -48,6 +48,12 @@ function draw() {
         const sum = dadCount + generalCount
         pieChart(300, [convertToRad(dadCount,sum),convertToRad(generalCount,sum)])
     } else {
+        push()
+  textFont('Helvetica', width/50)
+  text("Find your perfect jokes",width/2,height*2/9 - height/20)
+    textFont('Helvetica', min(height, width)/60)
+  text("Pick the joke that you like! (Min. 5)",width/2,height/3)
+  pop()
   const obj = {
       x: width/2,
       y: height/4,
@@ -69,14 +75,14 @@ function draw() {
 }
 
 function createJokes(obj) {
-    generalBtn.locate(obj.x - (btnWidth/2),obj.y)
+    generalBtn.locate(obj.x - (btnWidth/2),obj.y + height/8)
     generalBtn.text = generalJokes + "\n" + generalLines
     generalBtn.onPress = function(){
           generalCount += 1
         btnClicked()
     }
     
-    dadBtn.locate(obj.x - (btnWidth/2),obj.y + 25*(obj.size/10))
+    dadBtn.locate(obj.x - (btnWidth/2),obj.y + 25*(obj.size/10) + height/8)
     dadBtn.text = dadJokes
     dadBtn.onPress = function(){
           dadCount += 1
